@@ -79,7 +79,7 @@ export default function Hero() {
                   </div>
                   <button
                     className="btn text-white bg-blue-600 hover:bg-blue-700 w-full sm:w-auto sm:ml-4 sm:px-4 sm:py-2 h-10"
-                    href="#0"
+                    ref="#0"
                   >
                     I want to know more
                   </button>
