@@ -1,7 +1,52 @@
-import VideoThumb from "@/public/images/hero-image.png";
-import ModalVideo from "@/components/modal-video";
+"use client";
+import React, { useState, FormEvent, ChangeEvent } from "react";
+
+// Define interface for form data
+interface FormData {
+  name: string;
+  email: string;
+}
 
 export default function Hero() {
+  // State hooks with TypeScript for input values
+  const [formData, setFormData] = useState<FormData>({ name: "", email: "" });
+
+  // Handle input change
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault(); // Prevent default form submission behavior
+
+    try {
+      const response = await fetch("/api/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData), // Send form data as JSON
+      });
+
+      if (response.ok) {
+        console.log("Submission successful");
+        // Optionally reset form or give user feedback
+        setFormData({ name: "", email: "" });
+      } else {
+        console.error("Submission failed");
+        // Handle server errors or invalid responses
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      // Handle network errors
+    }
+  };
+
   return (
     <section className="relative">
       {/* Illustration behind hero content */}
@@ -64,25 +109,36 @@ export default function Hero() {
                 data-aos="zoom-y-out"
                 data-aos-delay="300"
               >
-                <div className="flex flex-col sm:flex-row">
+                <form
+                  className="flex flex-col sm:flex-row"
+                  onSubmit={handleSubmit}
+                >
                   <div className="flex flex-col sm:flex-row">
                     <input
                       type="text"
+                      name="name"
                       placeholder="Name"
                       className="border border-gray-300 rounded-md px-4 py-2 mb-2 sm:mr-2"
+                      value={formData.name}
+                      onChange={handleChange} // Update state on change
                     />
                     <input
                       type="email"
+                      name="email"
                       placeholder="Email"
                       className="border border-gray-300 rounded-md px-4 py-2 mb-2 sm:ml-2"
+                      value={formData.email}
+                      onChange={handleChange} // Update state on change
                     />
                   </div>
                   <button
+                    // disabled={!formData.name || !formData.email}
+                    type="submit"
                     className="btn text-white bg-blue-600 hover:bg-blue-700 w-full sm:w-auto sm:ml-4 sm:px-4 sm:py-2 h-10"
                   >
                     I want to know more
                   </button>
-                </div>
+                </form>
                 <div className="text-sm text-gray-500 mt-2">
                   We respect your privacy. Your name and email will only be used
                   to send you updates.
@@ -92,9 +148,11 @@ export default function Hero() {
           </div>
 
           {/* Hero image */}
+
           <img
             src="/images/pexels-andrea-piacquadio.jpg"
             alt="Hero image"
+            data-aos="zoom-y-out"
             className="w-full h-auto"
           />
         </div>
