@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, FormEvent, ChangeEvent } from "react";
+import { PrismaClient } from "@prisma/client";
 
 // Define interface for form data
 interface FormData {
@@ -21,29 +22,26 @@ export default function Hero() {
   };
 
   // Handle form submission
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault(); // Prevent default form submission behavior
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    const form = new FormData(event.target);
+    const name = form.get("name");
+    const email = form.get("email");
 
-    try {
-      const response = await fetch("/api/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData), // Send form data as JSON
-      });
+    const response = await fetch("/api/add-contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, email }),
+    });
 
-      if (response.ok) {
-        console.log("Submission successful");
-        // Optionally reset form or give user feedback
-        setFormData({ name: "", email: "" });
-      } else {
-        console.error("Submission failed");
-        // Handle server errors or invalid responses
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      // Handle network errors
+    if (response.ok) {
+      console.log("Contact added successfully");
+      // Handle success
+    } else {
+      console.error("Error adding contact");
+      // Handle error
     }
   };
 
