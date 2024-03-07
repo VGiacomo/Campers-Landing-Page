@@ -1,5 +1,6 @@
 // app/api/add-contact/route.ts
 import { PrismaClient } from "@prisma/client";
+import { NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
@@ -18,7 +19,7 @@ export async function POST(request: Request) {
     // Optionally, retrieve all contacts
     // const contacts = await prisma.contact.findMany();
 
-    return new Response(JSON.stringify({ contact }), {
+    return new NextResponse(JSON.stringify({ contact }), {
       status: 200,
       headers: {
         "Content-Type": "application/json",
@@ -26,12 +27,15 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error("Request error", error);
-    return new Response(JSON.stringify({ error: "Error creating contact" }), {
-      status: 500,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    return new NextResponse(
+      JSON.stringify({ error: "Error creating contact" }),
+      {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
   }
 }
 
