@@ -27,6 +27,7 @@ export default function Hero() {
     const form = new FormData(event.target);
     const name = form.get("name");
     const email = form.get("email");
+    console.log(name, email, "name email");
 
     const response = await fetch("/api/add-contact", {
       method: "POST",
@@ -41,6 +42,8 @@ export default function Hero() {
       // Handle success
     } else {
       console.error("Error adding contact");
+      console.log("in line 44 of hero.tsx");
+
       // Handle error
     }
   };
@@ -148,7 +151,7 @@ export default function Hero() {
           {/* Hero image */}
 
           <img
-            src="/images/pexels-andrea-piacquadio.jpg"
+            src="/images/pexels-main.jpeg"
             alt="Hero image"
             data-aos="zoom-y-out"
             className="w-full h-auto"
