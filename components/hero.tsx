@@ -13,8 +13,8 @@ interface FormData {
 export default function Hero() {
   // State hooks with TypeScript for input values
   const [formData, setFormData] = useState<FormData>({ name: "", email: "" });
-  const successToast = () => {
-    toast.success("Success Notification !", {
+  const successToast = (name: string) => {
+    toast.success(`Welcome ${name}`, {
       position: "top-right",
     });
   };
@@ -49,7 +49,7 @@ export default function Hero() {
 
     if (response.ok) {
       console.log("Contact added successfully");
-      successToast();
+      successToast(name);
       // Handle success
     } else {
       console.error("Error adding contact");
