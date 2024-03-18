@@ -3,7 +3,9 @@
 import { useState, useRef, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import Image from "next/image";
-import MockupBg from "@/public/images/freepik-mobile-mockup.jpg";
+import CampingCooking from "@/public/images/camping-cooking-LQ.jpg";
+import AskingInfos from "@/public/images/asking-infos-with-a-map_LQ.jpg";
+import ChattingOnTheGrass from "@/public/images/chatting-on-the-grass_LQ.jpg";
 // import FeaturesElement from '@/public/images/features-element.png'
 
 export default function Features() {
@@ -35,7 +37,8 @@ export default function Features() {
           <div className="max-w-3xl mx-auto text-center pb-12 md:pb-16">
             <h1 className="h2 mb-4">Why use CAMPERS</h1>
             <p className="text-xl text-gray-600">
-              To get the most out of you camping experience and meet new people.
+              To get the most out of your camping experience and meet new
+              people.
             </p>
           </div>
 
@@ -101,7 +104,7 @@ export default function Features() {
                     </div>
                     <div className="text-gray-600">
                       You are looking for a tool, a patch or just a bit of salt
-                      to make you meal tasty.
+                      to make your meal tasty.
                     </div>
                   </div>
                   <div className="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3">
@@ -180,10 +183,10 @@ export default function Features() {
                     <div className="relative inline-flex flex-col">
                       <Image
                         className="md:max-w-none mx-auto rounded"
-                        src={MockupBg}
+                        src={ChattingOnTheGrass}
                         width={500}
                         height="462"
-                        alt="Features bg"
+                        alt="Chatting on the grass"
                       />
                       {/* <Image className="md:max-w-none absolute w-full left-0 transform animate-float" src={FeaturesElement} width={500} height="44" alt="Element" style={{ top: '30%' }} /> */}
                     </div>
@@ -205,10 +208,10 @@ export default function Features() {
                     <div className="relative inline-flex flex-col">
                       <Image
                         className="md:max-w-none mx-auto rounded"
-                        src={MockupBg}
+                        src={CampingCooking}
                         width={500}
                         height="462"
-                        alt="Features bg"
+                        alt="Camping cooking"
                       />
                       {/* <Image className="md:max-w-none absolute w-full left-0 transform animate-float" src={FeaturesElement} width={500} height="44" alt="Element" style={{ top: '30%' }} /> */}
                     </div>
@@ -230,10 +233,10 @@ export default function Features() {
                     <div className="relative inline-flex flex-col">
                       <Image
                         className="md:max-w-none mx-auto rounded"
-                        src={MockupBg}
+                        src={AskingInfos}
                         width={500}
                         height="462"
-                        alt="Features bg"
+                        alt="People asking infos"
                       />
                       {/* <Image className="md:max-w-none absolute w-full left-0 transform animate-float" src={FeaturesElement} width={500} height="44" alt="Element" style={{ top: '30%' }} /> */}
                     </div>

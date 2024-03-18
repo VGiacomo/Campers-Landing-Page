@@ -1,6 +1,8 @@
 "use client";
 import React, { useState, FormEvent, ChangeEvent } from "react";
 import { PrismaClient } from "@prisma/client";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Define interface for form data
 interface FormData {
@@ -11,7 +13,16 @@ interface FormData {
 export default function Hero() {
   // State hooks with TypeScript for input values
   const [formData, setFormData] = useState<FormData>({ name: "", email: "" });
-
+  const successToast = () => {
+    toast.success("Success Notification !", {
+      position: "top-right",
+    });
+  };
+  const errorToast = () => {
+    toast.error("Error adding contact", {
+      position: "top-right",
+    });
+  };
   // Handle input change
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -20,7 +31,6 @@ export default function Hero() {
       [name]: value,
     }));
   };
-
   // Handle form submission
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -39,11 +49,11 @@ export default function Hero() {
 
     if (response.ok) {
       console.log("Contact added successfully");
+      successToast();
       // Handle success
     } else {
       console.error("Error adding contact");
-      console.log("in line 44 of hero.tsx");
-
+      errorToast();
       // Handle error
     }
   };
@@ -146,6 +156,7 @@ export default function Hero() {
                 </div>
               </div>
             </div>
+            <ToastContainer />
           </div>
 
           {/* Hero image */}
