@@ -1,13 +1,14 @@
 export const metadata = {
-  title: 'Home - Simple',
-  description: 'Page description',
-}
+  title: "Home - Simple",
+  description: "Page description",
+};
 
-import Hero from '@/components/hero'
-import Features from '@/components/features'
-import FeaturesBlocks from '@/components/features-blocks'
-import Testimonials from '@/components/testimonials'
-import Newsletter from '@/components/newsletter'
+import Hero from "@/components/hero";
+import Features from "@/components/features";
+import FeaturesBlocks from "@/components/features-blocks";
+import Testimonials from "@/components/testimonials";
+import Newsletter from "@/components/newsletter";
+import Faq from "@/components/faq";
 
 export default function Home() {
   return (
@@ -15,8 +16,9 @@ export default function Home() {
       <Hero />
       <Features />
       {/* <FeaturesBlocks /> */}
-      <Testimonials />
-      <Newsletter />
+      {/* <Testimonials />
+      <Newsletter /> */}
+      <Faq />
     </>
-  )
+  );
 }
